@@ -6,12 +6,10 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 export default function Home({ params }: { params: { id: string } }) {
-  const route = usePathname();
   const [groups, setGroups] = useState<Groupe[]>();
   const [str, setStr] = useState<string>("");
   const [isGroups, setIsGroups] = useState<boolean>();
   const [parsedGroups, setParsedgroups] = useState<Groupe[]>();
-  const [minimum, setMinimum] = useState<Groupe[]>();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const str = e.target.value.toString();
     setStr(str);
@@ -52,7 +50,6 @@ export default function Home({ params }: { params: { id: string } }) {
           placeholder="Search Name"
           onChange={handleChange}
           className="px-4 py-2 border border-gray-300 rounded-md text-black focus:outline-none focus:border-indigo-500"
-          // className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
         />
       </header>
       <CardList groups={parsedGroups!} />
