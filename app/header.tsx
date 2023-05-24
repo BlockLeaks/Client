@@ -46,11 +46,11 @@ export default function AppHeader({ group }: { group: string }) {
         )}
       </div>
 
-      {group && (
+      {/* {group && (
         <div>
           <br /> <h1 className="text-4xl"> ZKgroup : {group} </h1>
         </div>
-      )}
+      )} */}
     </header>
   );
 }

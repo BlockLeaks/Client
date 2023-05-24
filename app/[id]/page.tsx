@@ -5,28 +5,9 @@ import { fetching } from "../utils/returnFetch";
 import Main from "../example";
 import { WagmiConfig, createConfig, configureChains, mainnet } from "wagmi";
 import { createPublicClient, http } from "viem";
-import AppHeader from "../header";
 
-const config = createConfig({
-  autoConnect: true,
-  publicClient: createPublicClient({
-    chain: mainnet,
-    transport: http(),
-  }),
-});
-
-export default function Page({ params }: { params: { id: string } }) {
-  const [filenames, setFilenames] = useState<Groupe[]>();
-  const [done, setDone] = useState<boolean>();
-  useEffect(() => {
-    if (!done) {
-      fetching()
-        .then((x) => setFilenames(x))
-        .then(() => setDone(true));
-    }
-  }, []);
-
-  if (!done || filenames == undefined)
+export default function Page({ group }: { group: Groupe }) {
+  if (false)
     return (
       <div className="bg-rose-100 flex min-h-screen flex-col items-center justify-between p-24">
         <div className="space-y-4">
@@ -59,15 +40,9 @@ export default function Page({ params }: { params: { id: string } }) {
       </div>
     );
 
-  const fil = filenames!.filter((x) => x.name == params.id)!;
-  const page = fil[0];
-
   return (
     <div className="bg-rose-100 flex min-h-screen flex-col items-center justify-between p-24">
-      <WagmiConfig config={config}>
-        <AppHeader group={page.name} />
-        <Main groupId={page.id} />;
-      </WagmiConfig>
+      <Main groupId={group.id} />;
     </div>
   );
 }
