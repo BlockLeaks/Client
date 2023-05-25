@@ -36,10 +36,10 @@ export default function ThemeContext() {
         .then(() => setIsGroups(true));
     }
   }, []);
-  if (!isGroups) return <></>;
+
   const isPath = pathname === "/";
 
-  if (!isPath && !group) {
+  if (isGroups && !isPath && !group) {
     const mapped = groups?.filter((x: Groupe) => pathname.includes(x.name));
     if (!mapped || !mapped[0]) return <></>;
     setGroup(mapped[0]);
@@ -50,7 +50,7 @@ export default function ThemeContext() {
       {/* <h1 className="text-white">{pathname}</h1> */}
       <WagmiConfig config={config}>
         <AppHeader group={[groups!] as any} />
-        {isPath && <Home groups={groups!} />}
+        {isPath && <Home groups={groups!} isGroups={isGroups} />}
         {!isPath && <Page group={group!} />}
       </WagmiConfig>
     </>
