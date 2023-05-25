@@ -62,6 +62,7 @@ export default function Home({
       </main>
     );
   }
+  if (parsedGroups.length == 1) console.log(parsedGroups[0]);
   return (
     <main className="bg-rose-100 flex min-h-screen flex-col items-center justify-between p-24">
       <input
@@ -72,7 +73,8 @@ export default function Home({
         className="px-4 py-2 border border-gray-300 rounded-md 
         focus:outline-none text-black focus:border-indigo-500"
       />
-      {isGroups && <CardList groups={parsedGroups} />}
+      {/* <h1>{JSON.stringify(parsedGroups[0]}</h1> */}
+      <CardList groups={parsedGroups} />
     </main>
   );
 }
